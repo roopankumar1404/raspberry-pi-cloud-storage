@@ -34,4 +34,4 @@ This guide helps you transform your Raspberry Pi into a personal cloud system wi
 
 🚀 Getting Started?
 
-You can follow the complete guide on [my GitHub Pages site](https://roopankumar1404.github.io/raspi-cloud-drive) for step-by-step setup including all necessary commands and configurations.
+You can follow the complete guide on [my GitHub Pages site](https://roopankumar1404.github.io/raspberry-pi-cloud-storage/) for step-by-step setup including all necessary commands and configurations.
