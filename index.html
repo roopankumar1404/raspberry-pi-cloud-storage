@@ -3,116 +3,91 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Raspberry Pi Personal Cloud</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=2">
-  <script src="script.js?v=2"></script>
+  <title>My Raspberry Pi Cloud Guide</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <div class="header-content">
-      <h1>DIY Raspberry Pi Cloud Storage</h1>
-      <div class="logos">
-        <img src="https://upload.wikimedia.org/wikipedia/en/c/cb/Raspberry_Pi_Logo.svg" alt="Raspberry Pi Logo" />
-        <img src="nextcloud.jpeg" alt="Nextcloud Logo" />
-        <img src="tailscale.png" alt="Tailscale Logo" />
-      </div>
-      <nav>
-        <a href="#mounting">Mount Storage</a>
-        <a href="#nextcloud">Install Nextcloud</a>
-        <a href="#tailscale">Tailscale Setup</a>
-        <a href="#hosting">Enable Remote Access</a>
-      </nav>
-    </div>
+    <h1>🚀 Raspberry Pi Personal Cloud</h1>
+    <p class="tagline">Turn your Pi into a smart storage hub with Nextcloud and Tailscale.</p>
+    <nav>
+      <a href="#storage">Mount Storage</a>
+      <a href="#nextcloud">Install Nextcloud</a>
+      <a href="#vpn">Setup VPN</a>
+      <a href="#public">Enable Public Access</a>
+    </nav>
   </header>
 
   <main>
-    <section id="mounting">
-      <h2>🔌 Mounting USB Drive to Raspberry Pi</h2>
-      <div class="step">Step 1: Detect and Format the Drive</div>
-      <div class="command">lsblk</div>
-      <div class="command">sudo fdisk -l</div>
-      <div class="command">sudo mkdir /mnt/mydrive</div>
-      <div class="command">sudo mount /dev/sda1 /mnt/mydrive</div>
-      <div class="command">sudo mount -t auto /dev/sda1 /mnt/mydrive</div>
-      <div class="command">sudo chown -R pi:pi /mnt/mydrive</div>
-      <div class="command">sudo nano /etc/fstab <span style="color:gray;"># Auto-mount on boot (optional)</span></div>
-      <div class="command">df -h</div>
+    <section id="storage">
+      <h2>🔌 Attach and Mount External Drive</h2>
+      <ul class="cmd-list">
+        <li>lsblk</li>
+        <li>sudo fdisk -l</li>
+        <li>sudo mkdir /mnt/mydrive</li>
+        <li>sudo mount /dev/sda1 /mnt/mydrive</li>
+        <li>sudo chown -R pi:pi /mnt/mydrive</li>
+        <li>sudo nano /etc/fstab</li>
+        <li>df -h</li>
+      </ul>
     </section>
 
     <section id="nextcloud">
-      <h2>☁️ Setting Up Nextcloud</h2>
-      <div class="step">Step 1: Update your Pi</div>
-      <div class="command">sudo apt update && sudo apt upgrade -y</div>
-
-      <div class="step">Step 2: Install Web Server, DB & PHP</div>
-      <div class="command">sudo apt install apache2 -y</div>
-      <div class="command">sudo systemctl enable apache2</div>
-      <div class="command">sudo systemctl start apache2</div>
-      <div class="command">sudo apt install mariadb-server -y</div>
-      <div class="command">sudo mysql_secure_installation</div>
-      <div class="command">sudo apt install php libapache2-mod-php php-mysql php-xml php-mbstring php-zip php-curl php-gd php-intl php-bcmath -y</div>
-
-      <div class="step">Step 3: Configure the Database</div>
-      <div class="command">sudo mysql -u root -p</div>
-      <div class="command">CREATE DATABASE nextcloud;</div>
-      <div class="command">CREATE USER 'nextclouduser'@'localhost' IDENTIFIED BY 'password';</div>
-      <div class="command">GRANT ALL PRIVILEGES ON nextcloud.* TO 'nextclouduser'@'localhost';</div>
-      <div class="command">FLUSH PRIVILEGES;</div>
-      <div class="command">EXIT;</div>
-
-      <div class="step">Step 4: Download & Extract Nextcloud</div>
-      <div class="command">cd /tmp</div>
-      <div class="command">wget https://download.nextcloud.com/server/releases/latest.zip</div>
-      <div class="command">sudo apt install unzip</div>
-      <div class="command">unzip latest.zip</div>
-      <div class="command">sudo mv nextcloud /var/www/html/</div>
-
-      <div class="step">Step 5: Set File Permissions</div>
-      <div class="command">sudo chown -R www-data:www-data /var/www/html/nextcloud</div>
-      <div class="command">sudo chmod -R 755 /var/www/html/nextcloud</div>
+      <h2>☁️ Install and Configure Nextcloud</h2>
+      <ul class="cmd-list">
+        <li>sudo apt update && sudo apt upgrade -y</li>
+        <li>sudo apt install apache2 -y</li>
+        <li>sudo systemctl enable apache2</li>
+        <li>sudo systemctl start apache2</li>
+        <li>sudo apt install mariadb-server -y</li>
+        <li>sudo mysql_secure_installation</li>
+        <li>sudo apt install php libapache2-mod-php php-mysql php-xml php-mbstring php-zip php-curl php-gd php-intl php-bcmath -y</li>
+        <li>sudo mysql -u root -p</li>
+        <li>CREATE DATABASE nextcloud;</li>
+        <li>CREATE USER 'nextclouduser'@'localhost' IDENTIFIED BY 'password';</li>
+        <li>GRANT ALL PRIVILEGES ON nextcloud.* TO 'nextclouduser'@'localhost';</li>
+        <li>FLUSH PRIVILEGES;</li>
+        <li>EXIT;</li>
+        <li>cd /tmp</li>
+        <li>wget https://download.nextcloud.com/server/releases/latest.zip</li>
+        <li>sudo apt install unzip</li>
+        <li>unzip latest.zip</li>
+        <li>sudo mv nextcloud /var/www/html/</li>
+        <li>sudo chown -R www-data:www-data /var/www/html/nextcloud</li>
+        <li>sudo chmod -R 755 /var/www/html/nextcloud</li>
+      </ul>
     </section>
 
-    <section id="tailscale">
-      <h2>🔐 Securing with Tailscale</h2>
-      <div class="step">Step 1: Update System</div>
-      <div class="command">sudo apt update && sudo apt upgrade -y</div>
-
-      <div class="step">Step 2: Install Tailscale</div>
-      <div class="command">curl -fsSL https://tailscale.com/install.sh | sh</div>
-
-      <div class="step">Step 3: Login and Enable</div>
-      <div class="command">sudo tailscale up</div>
-      <div class="command">sudo systemctl enable tailscaled</div>
+    <section id="vpn">
+      <h2>🔐 Secure it with Tailscale VPN</h2>
+      <ul class="cmd-list">
+        <li>sudo apt update && sudo apt upgrade -y</li>
+        <li>curl -fsSL https://tailscale.com/install.sh | sh</li>
+        <li>sudo tailscale up</li>
+        <li>sudo systemctl enable tailscaled</li>
+      </ul>
     </section>
 
-    <section id="hosting">
-      <h2>🌐 Enabling Global Access (Tailscale Funnel)</h2>
-
-      <div class="step">Step 1: Serve Files Locally</div>
-      <div class="command">python3 -m http.server 3000</div>
-
-      <div class="step">Step 2: Make It Public</div>
-      <div class="command">sudo tailscale funnel 3000</div>
-      <div class="command"># OR expose the main Apache port</div>
-      <div class="command">sudo tailscale funnel 80</div>
-      <div class="command">➡️ Access URL: https://rkraspberrypi.yourtailnetname.ts.net</div>
-
-      <div class="step">Step 3: Add Domain to Trusted List</div>
-      <div class="command">sudo nano /var/www/html/nextcloud/config/config.php</div>
-      <div class="command">'trusted_domains' => array (</div>
-      <div class="command">0 => '192.168.x.x',</div>
-      <div class="command">1 => 'rkraspberrypi.tailxxxxx.ts.net',</div>
-      <div class="command">),</div>
-
-      <div class="step">Step 4: Restart the Server</div>
-      <div class="command">sudo systemctl restart apache2</div>
+    <section id="public">
+      <h2>🌍 Access from Anywhere (Funnel)</h2>
+      <ul class="cmd-list">
+        <li>python3 -m http.server 3000</li>
+        <li>sudo tailscale funnel 3000</li>
+        <li>sudo tailscale funnel 80</li>
+        <li>Edit <code>config.php</code>:</li>
+        <li>
+          <pre class="config-box">'trusted_domains' => array (
+  0 => '192.168.x.x',
+  1 => 'your.tailnet.ts.net',
+),</pre>
+        </li>
+        <li>sudo systemctl restart apache2</li>
+      </ul>
     </section>
   </main>
 
   <footer>
-    <p>📁 Raspberry Pi Cloud | Built with Nextcloud + Tailscale</p>
+    <p>&copy; 2025 My Pi Cloud | Built with ❤️ and Open Source</p>
   </footer>
 
   <script src="script.js"></script>
