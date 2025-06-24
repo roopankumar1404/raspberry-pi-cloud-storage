@@ -1,18 +1,11 @@
-// Enable smooth scroll for navigation links
-const navLinks = document.querySelectorAll('nav a');
-
-navLinks.forEach(link => {
-  link.addEventListener('click', event => {
-    event.preventDefault();
-
-    const targetID = link.getAttribute('href');
-    const targetSection = document.querySelector(targetID);
-
-    if (targetSection) {
-      targetSection.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'  // Optional: aligns the top of the section
-      });
-    }
+document.querySelectorAll('.cmd-list li').forEach(item => {
+  item.addEventListener('click', () => {
+    navigator.clipboard.writeText(item.textContent);
+    item.textContent += " ✅";
+    item.style.color = "green";
+    setTimeout(() => {
+      item.style.color = "";
+      item.textContent = item.textContent.replace(" ✅", "");
+    }, 1200);
   });
 });
