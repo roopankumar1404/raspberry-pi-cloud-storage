@@ -1,105 +1,77 @@
 body {
-  font-family: 'Inter', 'Roboto', sans-serif;
+  font-family: 'Arial', sans-serif;
   margin: 0;
-  padding: 0;
-  background-color: #f0f4f9;
-  color: #2b2b2b;
+  background: #f9fafc;
+  color: #333;
 }
 
 header {
-  background-color: #102132;
-  color: #ffffff;
-  padding: 0.75rem 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  background-color: #0d47a1;
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
 }
 
-.header-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-h1 {
-  font-size: 1.75rem;
-  margin: 0.5rem 0;
-}
-
-.logos {
-  display: flex;
-  gap: 1rem;
-  margin: 0.5rem 0;
-}
-
-.logos img {
-  height: 42px;
-  background: #ffffff;
-  padding: 6px;
-  border-radius: 6px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+.tagline {
+  margin-top: 10px;
+  font-size: 18px;
+  opacity: 0.8;
 }
 
 nav {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 0.75rem 0;
+  margin-top: 20px;
 }
 
 nav a {
-  color: #bbd9ff;
+  margin: 0 12px;
   text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-nav a:hover {
-  color: #ffffff;
+  color: #ffee58;
+  font-weight: bold;
 }
 
 main {
-  padding: 2rem;
-  max-width: 850px;
+  padding: 40px 20px;
+  max-width: 900px;
   margin: auto;
 }
 
-section {
-  margin-bottom: 3rem;
-}
-
 h2 {
-  color: #0b1e3a;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  color: #0d47a1;
+  margin-top: 40px;
 }
 
-.step {
-  font-weight: 600;
-  margin-top: 1.2rem;
-  color: #003366;
-  border-left: 4px solid #89b4f5;
-  padding-left: 0.5rem;
+.cmd-list {
+  list-style: none;
+  padding: 0;
 }
 
-.command {
-  background-color: #e3ecf7;
-  padding: 0.5rem 0.75rem;
-  font-family: 'Courier New', Courier, monospace;
-  border-radius: 6px;
-  margin: 0.3rem 0;
-  display: block;
-  white-space: pre-wrap;
+.cmd-list li {
+  background: #e3f2fd;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border-left: 6px solid #0d47a1;
+  font-family: monospace;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.3s;
+}
+
+.cmd-list li:hover {
+  background: #bbdefb;
+}
+
+.config-box {
+  background: #212121;
+  color: #cfd8dc;
+  padding: 16px;
+  border-radius: 8px;
+  font-family: monospace;
   overflow-x: auto;
 }
 
 footer {
+  background: #0d47a1;
+  color: #fff;
+  padding: 20px;
   text-align: center;
-  padding: 1rem;
-  background-color: #102132;
-  color: #e0e0e0;
-  font-size: 0.85rem;
-  margin-top: 2rem;
 }
